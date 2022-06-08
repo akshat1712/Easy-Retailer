@@ -1,10 +1,11 @@
+const path=require('path');
 require('dotenv').config();
 
+const express=require('express'); 
+const app=express(); 
+app.listen(3000);
 
-const express=require('express'); // Getting Express.js
-const app=express(); // making an instance of the express
-
-const mongoose= require('mongoose'); // Getting Mongoose to communicate with mongoDB
+const mongoose= require('mongoose'); 
 
 mongoose.connect(process.env.DATABASE,{
     dbName:'Inventories',
@@ -17,22 +18,18 @@ const RetailerSchema= new mongoose.Schema({
     Items: Object
 });
 
-const Table1=mongoose.model('Table1',RetailerSchema);
-
-const row= new Table1({
-    name:'EFGH',
-    Location:"Delhi",
-    Items:{
-        "Hide&Seek":10,
-        "Lays":20,
-    }
-});
-
-row.save().then( ()=>console.log("Added"));
+let Table1;
+try {
+    Table1=mongoose.model('Table1');
+} catch(error){
+    Table1=mongoose.model('Table1',RetailerSchema);
+}
 
 
-app.listen(3000);
-
+// Routers defined
+const RetailerRouter = require('./routes/retailer');
+app.use('/retailer',RetailerRouter);
+// Ended
 
 
 app.get('/',(req,res)=>{
