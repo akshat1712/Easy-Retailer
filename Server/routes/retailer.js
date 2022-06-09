@@ -2,7 +2,6 @@ const path=require('path');
 
 require('dotenv').config({path: path.resolve(__dirname, '../.env')});
 
-// console.log(process.env.DATABASE);
 
 const express = require("express");
 const router=express.Router();
