@@ -1,0 +1,20 @@
+import React from 'react'
+import Card from 'react-bootstrap/Card';
+
+export const Footer = () => {
+  return (
+    <Card>
+      <Card.Header>Footer</Card.Header>
+      <Card.Body>
+        <blockquote className="blockquote mb-0">
+          <p>
+              Contact us
+          </p>
+          <footer className="blockquote-footer">
+            IIT Ropar
+          </footer>
+        </blockquote>
+      </Card.Body>
+    </Card>
+  );
+}
