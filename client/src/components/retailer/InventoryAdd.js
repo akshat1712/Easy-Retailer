@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Search()
-{
+export const InventoryAdd = () => {
+
     const [itemArray,setItemArray] = React.useState([]);
-    const [locationArray,setLocationArray] = React.useState([]);
+    const [QuantityArray,setQuantityArray] = React.useState([]);
     const [formData,setFormData] = React.useState({item: "", location: ""});
 
     function handleChange(event)
@@ -14,8 +14,6 @@ export default function Search()
                 [event.target.id]: event.target.value
             }
         })
-        // console.log(itemArray);
-        // console.log(locationArray);
     }
     
     function addItem()
@@ -23,13 +21,13 @@ export default function Search()
         setItemArray(prevArray => [...prevArray,formData.item])
     }
     
-    function addLoc()
+    function addquantity()
     {
-        setLocationArray(prevArray => [...prevArray,formData.location])
+        setQuantityArray(prevArray => [...prevArray,formData.quantity])
     }
 
     const itemArrayEls = itemArray.map(item => <div>{item}</div>)
-    const locationArrayEls = locationArray.map(location => <div>{location}</div>)
+    const quantityArrayEls = QuantityArray.map(quantity => <div>{quantity}</div>)
 
     return (
         <div className='search-container'>
@@ -39,11 +37,13 @@ export default function Search()
                 <div className='array-item'>{itemArrayEls}</div>
             </div>
             <div className='location-container'>
-                <input id="location" type="text" placeholder='Location' onChange={handleChange} />
-                <button className='add' onClick={addLoc}>+</button>
-                <div className='array-item'>{locationArrayEls}</div>
+                <input id="quantity" type="text" placeholder='Quantity' onChange={handleChange} />
+                <button className='add' onClick={addquantity}>+</button>
+                <button className='sub' onClick={addquantity}>-</button>
+                <div className='array-item'>{quantityArrayEls}</div>
             </div>
-            <button className='search'>Search!</button>
+            <button className='search'>Update</button>
         </div>
     )
+
 }

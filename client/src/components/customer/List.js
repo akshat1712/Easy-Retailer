@@ -1,6 +1,21 @@
 import React from 'react'
 import RetailerInfo from './RetailerInfo'
-import data from '../components/data'
+
+
+const data=[
+    {
+        retailerName: "Buzz Lightyear",
+        phone: "123456789"
+    },
+    {
+        retailerName: "Buzz Lightyear",
+        phone: "123456789"
+    },
+    {
+        retailerName: "Buzz Lightyear",
+        phone: "123456789"
+    }
+]
 
 export default function List()
 {

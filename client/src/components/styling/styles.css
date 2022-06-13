@@ -40,7 +40,7 @@ body{
     border-radius: 12px;
 }
 
-.retailer-info-container{
+.retailer-info-container,.inventory-info-container{
     display: flex;
     justify-content: space-between;
     background-color: #6b5b95;
@@ -50,15 +50,12 @@ body{
     border-radius: 12px;
 }
 
-.retailer-name-container{
+.retailer-name-container,.inventory-item-container,.retailer-phone-container,.inventory-quantity-container{
     display: flex;
 }
 
-.retailer-phone-container{
-    display: flex;
-}
 
-.retailer-name, .retailer-phone{
+.retailer-name, .retailer-phone,.inventory-item , .inventory-quantity{
     margin-left: 0.5rem;
 }
 
@@ -90,7 +87,7 @@ input{
     bottom: 0px;
 } */
 
-.add{
+.add,.sub{
     border: black solid;
     border-radius: 50%;
     margin-left: 0.5rem;
