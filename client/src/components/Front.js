@@ -1,7 +1,14 @@
 import React from 'react'
+import List from '../front_components/List'
+import Search from '../front_components/Search'
+import Popular from '../front_components/Popular'
 
 export const Front = () => {
   return (
-    <div>Front</div>
+    <div className='main-container'>
+      <Search />
+      <List />
+      <Popular/>
+    </div>
   )
 }

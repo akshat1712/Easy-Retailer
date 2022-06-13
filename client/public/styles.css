@@ -1,0 +1,114 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+}
+
+.main-container{
+    display: grid;
+    gap: 2rem;
+    padding: 2rem;
+    grid-template-columns: auto auto auto;
+}
+
+/* Popular CSS */
+
+.popular{
+    margin-bottom: 2rem;
+    height: 50%;
+}
+
+.popular > h3{
+    padding: 1rem;
+    border-radius: 9px;
+}
+
+#pop-retailers{
+    background-color: #d64161;
+}
+
+#pop-items{
+    background-color: #ff7b25;
+}
+
+/* List CSS */
+.list-container{
+    background-color: #feb236;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+.retailer-info-container{
+    display: flex;
+    justify-content: space-between;
+    background-color: #6b5b95;
+    color: white;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+}
+
+.retailer-name-container{
+    display: flex;
+}
+
+.retailer-phone-container{
+    display: flex;
+}
+
+.retailer-name, .retailer-phone{
+    margin-left: 0.5rem;
+}
+
+/* Search CSS */
+.search-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: #e3eaa7;
+    padding: 1rem;
+    border-radius: 12px;
+}
+
+input{
+    width: 75%;
+    height: 50px;
+    border: black solid;
+    border-radius: 12px;
+    background-color: #b5e7a0;
+    font-weight: bold;
+}
+
+/* .item-container{
+    position: relative;
+    top: 0px;
+} 
+.location-container{
+    position: relative;
+    bottom: 0px;
+} */
+
+.add{
+    border: black solid;
+    border-radius: 50%;
+    margin-left: 0.5rem;
+    background-color: #86af49;
+    font-weight: bold;
+    width: 35px;
+    height: 35px;
+}
+
+.search{
+    background-color: #86af49;
+    font-weight: bold;
+    border-radius: 12px;
+}
+
+.array-item{
+    padding: 1rem;
+    font-weight: bold;
+}
+
+
