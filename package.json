@@ -2,14 +2,18 @@
   "name": "node-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "devstart":"nodemon Server/server.js"
+    "start": "nodemon Server/server.js",
+    "devstart": "nodemon Server/server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "express": "^4.18.1",
+    "express-async-handler": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.5"
   },
   "devDependencies": {
