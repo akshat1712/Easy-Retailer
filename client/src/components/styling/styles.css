@@ -40,7 +40,7 @@ body{
     border-radius: 12px;
 }
 
-.retailer-info-container,.inventory-info-container{
+.info-container{
     display: flex;
     justify-content: space-between;
     background-color: #6b5b95;
@@ -50,7 +50,7 @@ body{
     border-radius: 12px;
 }
 
-.retailer-name-container,.inventory-item-container,.retailer-phone-container,.inventory-quantity-container{
+.name-container,.extra-info-container{
     display: flex;
 }
 

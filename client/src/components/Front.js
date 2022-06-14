@@ -1,9 +1,11 @@
 import React from 'react'
-import List from './customer/List'
-import Search from './customer/Search'
 import Popular from './Shared/Popular'
-import { InventoryList } from './retailer/InventoryList'
+
+import Search from './customer/Search'
+
 import { InventoryAdd } from './retailer/InventoryAdd'
+
+import List from './Shared/List'
 
 import './styling/styles.css'
 
@@ -13,7 +15,7 @@ export const Front = () => {
   return (
     <div className='main-container'>
       {login? <InventoryAdd/>:<Search />}
-      {login? <InventoryList/>:<List />}
+      <List login={login}/>
       <Popular login={login}/>
     </div>
   )
