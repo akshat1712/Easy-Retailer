@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './components/styling/styles.css';
@@ -8,20 +9,22 @@ import { Front } from './components/Front';
 import { Footer } from './components/Footer';
 import Register from './components/Register';
 import Login from './components/Login';
+import { GlobalContext } from './context/GlobalState';
 
-let login = 0;
 function App() {
+
+  const { login } = useContext(GlobalContext);
   return (
     <>
-      <Router>
-        <Header login={login} />
-        <Routes>
-          <Route path='/' element={<Front login={login} />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-        </Routes>
-      </Router>
-      <Footer />
+        <Router>
+          <Header login={login} />
+          <Routes>
+            <Route path='/' element={<Front login={login} />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+        </Router>
+        <Footer />
     </>
   );
 }

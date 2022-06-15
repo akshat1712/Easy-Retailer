@@ -1,29 +1,36 @@
-import React from "react";
+import React,{useContext} from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 
+import { GlobalContext } from '../../context/GlobalState';
+
 export default function ListItem(props) {
-    console.log(props);
+  const { login } = useContext(GlobalContext);
+
   return (
     <Container>
       <Row>
       <div className="info-container">
         <div className="name-container">
 
-          {!props.login ? (
+          {!login ? (
             <>
               <span className="material-symbols-outlined">person</span>
               <span className="retailer-name">{props.retailerName}</span>
             </>
           ) : (
+            <>
+              <span class="material-symbols-outlined">store</span>
               <span className="inventory-item">{props.Item}</span>
+
+            </>
           )}
 
         </div>
 
         <div className="extra-info-container">
 
-          {!props.login ? (
+          {!login ? (
             <>
               <span className="material-symbols-outlined">Call</span>
               <span className="retailer-phone">{props.phone}</span>

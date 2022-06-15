@@ -2,8 +2,9 @@ import React from 'react'
 import Popular from './Shared/Popular'
 
 import Search from './customer/Search'
-
+import { useContext } from 'react';
 import { InventoryAdd } from './retailer/InventoryAdd'
+import { GlobalContext } from '../context/GlobalState';
 
 import List from './Shared/List'
 
@@ -12,19 +13,21 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 
-export const Front = (props) => {
+export const Front = () => {
+  const { login } = useContext(GlobalContext);
+
   return (
     <Container fluid='true'>
       <Row>
         <div className='main-container'>
           <Col>
-            {props.login ? <InventoryAdd /> : <Search />}
+            {login ? <InventoryAdd /> : <Search />}
           </Col>
           <Col>
-            <List login={props.login} />
+            <List  />
           </Col>
           <Col>
-            <Popular login={props.login} />
+            <Popular l />
           </Col>
         </div>
       </Row>

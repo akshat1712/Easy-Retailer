@@ -1,11 +1,13 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
+import { GlobalContext } from '../../context/GlobalState';
 
-export default function Popular( {login})
+export default function Popular( )
 {
+    const { login } = useContext(GlobalContext);
     return (
         <Container fluid>
             <div className='pop-container'>

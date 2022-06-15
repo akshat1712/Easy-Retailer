@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useContext} from 'react'
+
+import { GlobalContext } from '../context/GlobalState';
 
 import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 
-export const Header = (props) => {
+export const Header = () => {
 
+  const { login } = useContext(GlobalContext);
 
   return (
     <Navbar bg="info" variant="light" sticky="top" expand="lg">
@@ -17,7 +20,7 @@ export const Header = (props) => {
 
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
           <LinkContainer to="/login">
-            {props.login ? (
+            {login ? (
               <Navbar.Text className='mx-2' as={Link} to='/' >
                 <h5>
                   <b >

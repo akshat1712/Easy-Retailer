@@ -18,7 +18,6 @@ export const InventoryAdd = () => {
     }
 
     const handlesearch = (e)=>{
-        console.log(item,quantity);
         SetItem('');
         SetQuantity(0);
     }
