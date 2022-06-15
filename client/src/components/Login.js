@@ -27,7 +27,7 @@ const Login = () => {
             <div className='row my-5'>
                 <div className="col-lg-3" />
                 <div className="col-lg-6">
-                    <h1> <FaSignInAlt /> Register as a Reatailer</h1>
+                    <h1> <FaSignInAlt /> Login</h1>
                     <form onSubmit={formSubmit}>
                         <div className="form-group my-3">
                             <label for="phone">Phone Number</label>
