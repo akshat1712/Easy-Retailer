@@ -78,15 +78,6 @@ input{
     font-weight: bold;
 }
 
-/* .item-container{
-    position: relative;
-    top: 0px;
-} 
-.location-container{
-    position: relative;
-    bottom: 0px;
-} */
-
 .add,.sub{
     border: black solid;
     border-radius: 50%;
@@ -108,4 +99,14 @@ input{
     font-weight: bold;
 }
 
+/* ArrayItem CSS  */
+.array-item-container{
+    display: flex;
+    justify-content: space-between;
+}
 
+#cancel{
+    font-weight: bolder;
+    color: red;
+    cursor: pointer;
+}

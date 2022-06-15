@@ -6,7 +6,7 @@ import { Header } from './components/Header';
 import { Front } from './components/Front';
 import {Footer} from './components/Footer';
 
-let login=1;
+let login=0;
 function App() {
   return (
     <>
