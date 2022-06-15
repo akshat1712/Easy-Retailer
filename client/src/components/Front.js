@@ -12,19 +12,19 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col'
 
 
-export const Front = ( props) => {
+export const Front = (props) => {
   return (
     <Container fluid='true'>
       <Row>
         <div className='main-container'>
           <Col>
-            {props.login? <InventoryAdd/>:<Search />}
+            {props.login ? <InventoryAdd /> : <Search />}
           </Col>
           <Col>
-            <List login={props.login}/>
+            <List login={props.login} />
           </Col>
           <Col>
-            <Popular login={props.login}/>
+            <Popular login={props.login} />
           </Col>
         </div>
       </Row>

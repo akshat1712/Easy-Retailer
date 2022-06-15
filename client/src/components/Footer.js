@@ -8,7 +8,7 @@ export const Footer = () => {
       <Card.Body>
         <blockquote className="blockquote mb-0">
           <p>
-              Contact us
+            Contact us
           </p>
           <footer className="blockquote-footer">
             IIT Ropar

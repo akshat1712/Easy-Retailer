@@ -1,9 +1,9 @@
 import React from 'react'
 
 import Container from 'react-bootstrap/Container';
-
+import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
-
+import { Link } from 'react-router-dom';
 
 export const Header = (props) => {
 
@@ -11,17 +11,32 @@ export const Header = (props) => {
   return (
     <Navbar bg="info" variant="light" sticky="top" expand="lg">
       <Container>
-        <Navbar.Brand href="#home"> <h3>Logo</h3></Navbar.Brand>
+        <Navbar.Brand as={Link} to="/"> <h3>Logo</h3></Navbar.Brand>
 
-        <Navbar.Toggle  />
+        <Navbar.Toggle />
+
         <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
-          <Navbar.Text className='mx-2' >
-            <h5>
-              <b>
-                { props.login? 'Retailer': 'Customer'}
-              </b>
-            </h5>
-          </Navbar.Text>
+          <LinkContainer to="/login">
+            {props.login ? (
+              <Navbar.Text className='mx-2' as={Link} to='/' >
+                <h5>
+                  <b >
+                    Logout
+                  </b>
+                </h5>
+              </Navbar.Text>
+
+            ) : (
+              <Navbar.Text className='mx-2' as={Link} to='/login' >
+                <h5>
+                  <b >
+                    Retailer
+                  </b>
+                </h5>
+              </Navbar.Text>
+
+            )}
+          </LinkContainer>
         </Navbar.Collapse>
       </Container>
     </Navbar>
