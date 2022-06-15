@@ -5,13 +5,13 @@ const jwt = require('jsonwebtoken');
 
 const getRetailers = asyncHandler(async (req, res) => {
     const found = await Retailer.find({});
-    if (found){
+    if (found) {
         res.status(200).json(found);
     }
-    else{
+    else {
         res.status(500).json({
-            errorcode : 500,
-            message : "Something went wrong"
+            errorcode: 500,
+            message: "Something went wrong"
         });
         return;
     }
@@ -19,22 +19,22 @@ const getRetailers = asyncHandler(async (req, res) => {
 
 const registerRetailer = asyncHandler(async (req, res) => {
     const { contact, password, retailer_name, location } = req.body;
-    
+
     if (!contact || !password || !retailer_name || !location) {
         res.status(400).send("Empty fields not allowed");
         throw new Error("Empty fields not allowed");
     }
 
-    const retailerExists = await Retailer.findOne({ $or: [{contact: contact}, {retailer_name: retailer_name}]});
+    const retailerExists = await Retailer.findOne({ $or: [{ contact: contact }, { retailer_name: retailer_name }] });
 
     if (retailerExists) {
         res.status(400).json({
-            errorcode : 400,
-            message : "Retailer already exists..."
+            errorcode: 400,
+            message: "Retailer already exists..."
         });
         return;
     }
-    
+
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
 
@@ -50,8 +50,8 @@ const registerRetailer = asyncHandler(async (req, res) => {
 
     if (!retailer) {
         res.status(400).json({
-            errorcode : 400,
-            message : "Could not add retailer please check input"
+            errorcode: 400,
+            message: "Could not add retailer please check input"
         });
         return;
     } else {
@@ -60,9 +60,44 @@ const registerRetailer = asyncHandler(async (req, res) => {
             contact: retailer.contact,
             retailer_name: retailer.retailer_name,
             location: retailer.location,
-            token: jwt.sign({ id: retailer._id }, "secret", { expiresIn: "30d" })
+            token: generateToken(retailer._id)
         });
     }
 })
 
-module.exports = { getRetailers, registerRetailer }; 
+const loginRetailer = asyncHandler(async (req, res) => {
+    const { contact, password } = req.body;
+
+    if (!contact || !password) {
+        res.status(400).json({
+            errorcode: 400,
+            message: "Missing credentials"
+        });
+        return;
+    }
+
+    const retailer = await Retailer.findOne({ contact: contact });
+    if (retailer && (await bcrypt.compare(password, retailer.password))) {
+        res.status(200).json({
+            id: retailer.id,
+            contact: retailer.contact,
+            retailer_name: retailer.retailer_name,
+            location: retailer.location,
+            token: generateToken(retailer._id)
+        })
+    } else {
+        res.status(401).json({
+            errorcode: 401,
+            message: "Incorrect username or password"
+        })
+        return;
+    }
+})
+
+const currentRetailer = (req, res) => {
+    
+}
+
+const generateToken = (id) => { return jwt.sign({ id }, "secret", {expiresIn: "30d"}) }
+
+module.exports = { getRetailers, registerRetailer, loginRetailer }; 
