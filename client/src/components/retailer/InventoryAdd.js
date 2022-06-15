@@ -1,4 +1,7 @@
 import React, {useState} from 'react'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+
 
 export const InventoryAdd = () => {
 
@@ -21,15 +24,27 @@ export const InventoryAdd = () => {
     }
 
     return (
-        <div className='search-container'>
+    
+    <div className='search-container'>
+        <Form>
 
-            <form className='item-container'>
-                <input id="item" type="text" placeholder='Item' value={item} onChange={handleItem}/>
-                <input id="quantity" type="number" placeholder='Quantity' value={quantity} onChange={handlequantity} />
-                <button className='search' onClick={handlesearch}>Update</button>
-            </form>
+            <Form.Group className="mb-3" controlId="formBasicEmail" >
+                <Form.Label>Item</Form.Label>
+                <Form.Control type="text" placeholder="Item" value={item} onChange={handleItem} />
+            </Form.Group>
 
-        </div>
+            <Form.Group className="mb-3" controlId="formBasicPassword" >
+                <Form.Label>Quantity</Form.Label>
+                <Form.Control type="number" placeholder="Quantity" value={quantity} onChange={handlequantity}/>
+            </Form.Group>
+
+            <Button variant="primary" onClick={handlesearch}>
+                Update
+            </Button>
+
+        </Form>
+    </div>
+    
     )
 
 }

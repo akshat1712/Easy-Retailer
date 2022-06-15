@@ -7,16 +7,28 @@ import { InventoryAdd } from './retailer/InventoryAdd'
 
 import List from './Shared/List'
 
-import './styling/styles.css'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
 
-let login=1;
 
-export const Front = () => {
+export const Front = ( props) => {
   return (
-    <div className='main-container'>
-      {login? <InventoryAdd/>:<Search />}
-      <List login={login}/>
-      <Popular login={login}/>
-    </div>
+    <Container fluid='true'>
+      <Row>
+        <div className='main-container'>
+          <Col>
+            {props.login? <InventoryAdd/>:<Search />}
+          </Col>
+          <Col>
+            <List login={props.login}/>
+          </Col>
+          <Col>
+            <Popular login={props.login}/>
+          </Col>
+        </div>
+      </Row>
+
+    </Container>
   )
 } 

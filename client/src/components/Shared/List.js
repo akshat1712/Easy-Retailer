@@ -1,6 +1,10 @@
 import React from 'react'
 import ListItem from './ListItem'
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col'
+
 const retailer=[
     {
         Item: "Lays",
@@ -42,9 +46,11 @@ export const List = (props) => {
     });
     
     return (
-        <div className='list-container'>
-            {Array}
-        </div>
+        <Container>
+            <div className='list-container'>
+                {Array}
+            </div>
+        </Container>
     )
 }
 
