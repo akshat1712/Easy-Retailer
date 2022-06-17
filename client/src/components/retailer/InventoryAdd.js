@@ -6,7 +6,7 @@ import { GlobalContext } from '../../context/GlobalState';
 
 export const InventoryAdd = () => {
 
-  const { retailerList,changeRetailerlist } = useContext(GlobalContext);
+  const { changeRetailerlist } = useContext(GlobalContext);
 
   const [quantity, SetQuantity] = useState(0);
   const [item, SetItem] = useState("");
@@ -20,7 +20,7 @@ export const InventoryAdd = () => {
   };
 
   const handleUpdate = (e) => {
-    if( item==='' || quantity==0)
+    if( item==='' || quantity===0)
       return;
     changeRetailerlist({"Item":item,"Quantity":quantity});
     SetItem("");
