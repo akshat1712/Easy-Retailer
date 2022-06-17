@@ -20,7 +20,7 @@ export default function ListItem(props) {
             </>
           ) : (
             <>
-              <span class="material-symbols-outlined">store</span>
+              <span className="material-symbols-outlined">store</span>
               <span className="inventory-item">{props.Item}</span>
 
             </>

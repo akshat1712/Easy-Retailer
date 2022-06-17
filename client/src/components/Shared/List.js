@@ -2,29 +2,9 @@ import React,{useContext} from 'react'
 import ListItem from './ListItem'
 
 import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col'
+
 
 import { GlobalContext } from '../../context/GlobalState';
-
-const retailer=[
-    {
-        Item: "Item",
-        Quantity: "Quantity"
-    },
-    {
-        Item: "Lays",
-        Quantity: "45"
-    },
-    {
-        Item: "Parle-G",
-        Quantity: "23"
-    },
-    {
-        Item: "Coca Cola",
-        Quantity: "100"
-    }
-]
 
 const customer=[
     {
@@ -41,11 +21,12 @@ const customer=[
     }
 ]
 
-
 export const List = () => {
-    const { login } = useContext(GlobalContext);
+    
 
-    const data=login? retailer :customer;
+    const { login,retailerList } = useContext(GlobalContext);
+
+    const data=login? retailerList :customer;
 
     const Array = data.map(Item=> {
         return <ListItem
@@ -62,4 +43,3 @@ export const List = () => {
     )
 }
 
-export default List

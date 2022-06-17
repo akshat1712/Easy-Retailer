@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { InventoryAdd } from './retailer/InventoryAdd'
 import { GlobalContext } from '../context/GlobalState';
 
-import List from './Shared/List'
+import {List} from './Shared/List'
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
