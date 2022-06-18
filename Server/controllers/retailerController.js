@@ -95,9 +95,15 @@ const loginRetailer = asyncHandler(async (req, res) => {
 })
 
 const currentRetailer = (req, res) => {
-    
+    res.status(200).json({
+        id: req.retailer.id,
+        contact: req.retailer.contact,
+        retailer_name: req.retailer.retailer_name,
+        location: req.retailer.location,
+        token: generateToken(req.retailer._id)
+    })
 }
 
 const generateToken = (id) => { return jwt.sign({ id }, "secret", {expiresIn: "30d"}) }
 
-module.exports = { getRetailers, registerRetailer, loginRetailer }; 
+module.exports = { getRetailers, registerRetailer, loginRetailer, currentRetailer }; 
