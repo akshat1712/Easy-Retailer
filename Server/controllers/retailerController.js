@@ -1,5 +1,6 @@
 const asyncHandler = require('express-async-handler');
 const Retailer = require('../models/retailerModel');
+const popRetailer = require('../models/popularRetailerModel');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
@@ -25,14 +26,29 @@ const registerRetailer = asyncHandler(async (req, res) => {
         throw new Error("Empty fields not allowed");
     }
 
+    
     const retailerExists = await Retailer.findOne({ $or: [{ contact: contact }, { retailer_name: retailer_name }] });
-
+    
     if (retailerExists) {
         res.status(400).json({
             errorcode: 400,
             message: "Retailer already exists..."
         });
         return;
+    }
+
+    // Create a entry in Popular Retailer 
+    const popretailer= await popRetailer.create({
+       Name: retailer_name,
+       Contact: contact,
+       Queried : 0 
+    });
+
+    if( !popretailer){
+        res.sendStatus(500).json({
+            errorcode:500,
+            message:"Could not add retailer to popular retail"
+        });
     }
 
     const salt = await bcrypt.genSalt(10);
