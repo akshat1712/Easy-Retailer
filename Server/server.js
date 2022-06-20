@@ -18,7 +18,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routers defined
 const RetailerRouter = require('./routes/retailer');
+const CustomerRouter = require('./routes/customer');
 app.use('/retailer', RetailerRouter);
+app.use('/customer',CustomerRouter);
 // Ended
 
-app.listen(3000);
+app.listen(5000);
+
+
