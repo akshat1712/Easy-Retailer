@@ -1,4 +1,5 @@
 import React from 'react'
+import {motion} from 'framer-motion'
 
 export default function ArrayItem(props)
 {
@@ -10,13 +11,26 @@ export default function ArrayItem(props)
             return prevArr.filter((e) => e!== thing);
         })
     }
+    const arrayItemVariants = {
+        hover:{
+            scale: 1.1,
+            transition:{
+                ease: "easeInOut"
+            },
+        }
+    }
 
     return (
         <div className='array-item-container'>
-            <div>{thing}</div>
-            <span id="cancel" className="material-symbols-outlined"
+            <motion.div
+                variants={arrayItemVariants}
+                whileHover="hover"
+            >{thing}</motion.div>
+            <motion.span id="cancel" className="material-symbols-outlined"
                 onClick={handleCancel}
-            >cancel</span>
+                variants={arrayItemVariants}
+                whileHover="hover"
+            >cancel</motion.span>
         </div>
     )
 }

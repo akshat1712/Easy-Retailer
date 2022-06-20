@@ -6,21 +6,31 @@ import Container from 'react-bootstrap/Container';
 import { LinkContainer } from 'react-router-bootstrap';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
+import {motion} from 'framer-motion'
 
-import logo from './Logo.svg';
+// import logo from './EasyRetailerLogo_1.svg';
+import logo from './logos/Logo.svg';
 export const Header = () => {
 
   const { login } = useContext(GlobalContext);
+  const logoVariants = {
+    hover: {
+      scale: 1.1,
+      boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+    }
+  }
 
   return (
     <>
       <Navbar bg="info" variant="light" sticky="top" expand="lg">
         <Container>
           <Navbar.Brand as={Link} to="/"> 
-            <img 
+            <motion.img
+              variants={logoVariants}
+              whileHover="hover"
               src={logo}
-              width="10%"
-              height="10%"
+              width="12.5%"
+              height="12.5%"
               className="d-inline-block align-top"
               alt="logo"/>
           </Navbar.Brand>
@@ -31,20 +41,26 @@ export const Header = () => {
             <LinkContainer to="/login">
               {login ? (
                 <Navbar.Text className='mx-2' as={Link} to='/' >
-                  <h5>
+                  <motion.h5
+                    variants={logoVariants}
+                    whileHover="hover"
+                  >
                     <b >
                       Logout
                     </b>
-                  </h5>
+                  </motion.h5>
                 </Navbar.Text>
 
               ) : (
                 <Navbar.Text className='mx-2' as={Link} to='/login' >
-                  <h5>
+                  <motion.h5
+                    variants={logoVariants}
+                    whileHover="hover"
+                  >
                     <b >
                       Retailer
                     </b>
-                  </h5>
+                  </motion.h5>
                 </Navbar.Text>
 
               )}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react'
 import { FaSignInAlt } from 'react-icons/fa'
+import {motion} from 'framer-motion'
 
 const Login = () => {
     const [formData, setFormData] = useState({
@@ -22,8 +23,30 @@ const Login = () => {
         // Submit functions
     }
 
+    const containerVariants = {
+        hidden:{
+            opacity: 0
+          },
+        visible:{
+        opacity: 1,
+        transition:{
+            delay: 0.5,
+            duration: 1.5
+        }
+        },
+        exit:{
+        x: '-100vw',
+        transition:{ease: "easeInOut"}
+        }
+    }
+
     return (
-        <div>
+        <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+        >
             <div className='row my-5'>
                 <div className="col-lg-3" />
                 <div className="col-lg-6">
@@ -42,7 +65,7 @@ const Login = () => {
                 </div>
                 <div className="col-lg-3" />
             </div>
-        </div>
+        </motion.div>
     )
 }
 

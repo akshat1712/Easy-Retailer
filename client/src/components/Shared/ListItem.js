@@ -1,16 +1,19 @@
 import React,{useContext} from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
+import {motion} from 'framer-motion'
 
 import { GlobalContext } from '../../context/GlobalState';
 
 export default function ListItem(props) {
   const { login } = useContext(GlobalContext);
-
   return (
     <Container>
       <Row>
-      <div className="info-container">
+      <motion.div className="info-container"
+        variants={props.variants}
+        whileHover="hover"
+      >
         <div className="name-container">
 
           {!login ? (
@@ -41,7 +44,7 @@ export default function ListItem(props) {
 
         </div>
 
-      </div>
+      </motion.div>
 
       </Row>
     </Container>
