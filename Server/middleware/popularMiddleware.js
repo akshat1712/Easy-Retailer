@@ -3,21 +3,26 @@ const popretailer = require("../models/popularRetailerModel");
 const popitem = require("../models/popularItemModel");
 
 const PopRetailer = asyncHandler( async(Retailer) => {
-    for( const name in Retailer){
-        popretailer.updateOne({ Name:name}, { $inc : {Queried:1}});
+    for( const result of Retailer){
+        for ( const seller of result.sellers){
+            console.log(seller.retailer_name);
+           await popretailer.updateOne({Name:seller.retailer_name}, {$inc: {Queried:1}});
+        }
     }
 });
 
 const PopItems = asyncHandler( async(Items) => {
-    for( const item in Items){
-        const count= popitem.count( {Item:item});
-        if(count)
+    for( const item of Items){
+        const count=await popitem.countDocuments({Item:item.name});
+        if( count==0)
         {
-            popitem.insertOne( { Item:item, Queried:1});
+            console.log("CreateOne");
+            await popitem.create( {Item:item.name , Queried:1});
         }
         else
         {
-            popitem.updateOne( {Item:item}, { $inc : {Queried:1}});
+            console.log("CreateMany");
+            await popitem.updateOne( {Item:item.name}, { $inc : {Queried:1}});
         }
     }
 });
