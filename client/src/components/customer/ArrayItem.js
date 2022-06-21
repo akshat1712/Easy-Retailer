@@ -12,6 +12,19 @@ export default function ArrayItem(props)
         })
     }
     const arrayItemVariants = {
+        hidden:{
+            x: "-100vw",
+            opacity: 0
+        },
+        visible:{
+            x:0,
+            opacity: 1,
+            transition:{
+                type: "spring",
+                stiffness: 80,
+                // duration: 0.25
+            }
+        },
         hover:{
             scale: 1.1,
             transition:{
@@ -21,7 +34,12 @@ export default function ArrayItem(props)
     }
 
     return (
-        <div className='array-item-container'>
+        <motion.div
+            className='array-item-container'
+            variants={arrayItemVariants}
+            initial="hidden"
+            animate="visible"
+        >
             <motion.div
                 variants={arrayItemVariants}
                 whileHover="hover"
@@ -31,6 +49,6 @@ export default function ArrayItem(props)
                 variants={arrayItemVariants}
                 whileHover="hover"
             >cancel</motion.span>
-        </div>
+        </motion.div>
     )
 }

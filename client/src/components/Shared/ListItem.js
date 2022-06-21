@@ -7,11 +7,30 @@ import { GlobalContext } from '../../context/GlobalState';
 
 export default function ListItem(props) {
   const { login } = useContext(GlobalContext);
+  const listItemVariants = {
+    // hidden:{
+    //     y: -1000,
+    //     opacity: 0
+    // },
+    // visible:{
+    //     y:0,
+    //     opacity:1
+    // },
+    hover:{
+        scale: 1.1,
+        transition:{
+            ease: "easeInOut"
+        },
+        boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
+    }
+}
   return (
     <Container>
       <Row>
       <motion.div className="info-container"
-        variants={props.variants}
+        variants={listItemVariants}
+        initial="hidden"
+        animate="visible"
         whileHover="hover"
       >
         <div className="name-container">

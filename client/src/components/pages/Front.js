@@ -29,7 +29,7 @@ export const Front = () => {
     },
     exit:{
       x: '-100vw',
-      transition:{ease: "easeInOut"}
+      transition:{ease: "easeInOut", duration: 1.0}
     }
   }
 

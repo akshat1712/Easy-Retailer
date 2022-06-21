@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Header login={login} />
-      <AnimatePresence>
+      <AnimatePresence exitBeforeEnter>
         <Routes location={location} key={location.key}>
           <Route path='/' element={<Front login={login} />} />
           <Route path='/login' element={<Login />} />

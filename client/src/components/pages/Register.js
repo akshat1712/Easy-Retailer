@@ -38,7 +38,7 @@ const Register = () => {
         },
         exit:{
         x: '-100vw',
-        transition:{ease: "easeInOut"}
+        transition:{ease: "easeInOut", duration: 1.0}
         }
     }
 
@@ -52,7 +52,7 @@ const Register = () => {
             <div className='row my-5'>
                 <div className="col-lg-3" />
                 <div className="col-lg-6">
-                    <h1> <FaUserAlt /> Register as a Reatailer</h1>
+                    <h1> <FaUserAlt /> Register as a Retailer</h1>
                     <form onSubmit={formSubmit}>
                         <div className="form-group my-3">
                             <label for="name">Retailer Name</label>

@@ -36,7 +36,7 @@ const Login = () => {
         },
         exit:{
         x: '-100vw',
-        transition:{ease: "easeInOut"}
+        transition:{ease: "easeInOut", duration: 1.0}
         }
     }
 
