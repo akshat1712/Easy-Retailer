@@ -1,4 +1,5 @@
 const express = require('express');
+const morgan = require('morgan');
 const app = express();
 
 const path = require('path');
@@ -15,6 +16,8 @@ mongoose.connect(process.env.DATABASE, {
 // For parseing data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use(morgan('dev'));
 
 // Routers defined
 const RetailerRouter = require('./routes/retailer');

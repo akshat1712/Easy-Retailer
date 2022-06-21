@@ -1,28 +1,21 @@
-import React,{useContext} from 'react'
+import React,{useContext, useEffect} from 'react'
 import ListItem from './ListItem'
 import Container from 'react-bootstrap/Container';
 import { GlobalContext } from '../../context/GlobalState';
 import {motion} from 'framer-motion';
 
-const customer=[
-    {
-        retailerName: "Buzz Lightyear",
-        phone: "123456789"
-    },
-    {
-        retailerName: "Buzz Lightyear",
-        phone: "123456789"
-    },
-    {
-        retailerName: "Buzz Lightyear",
-        phone: "123456789"
-    }
-]
 
 export const List = () => {
     
-    const { login,retailerList } = useContext(GlobalContext);
-    const data=login? retailerList :customer;    
+    const { login,retailerList,retailers,getretailers } = useContext(GlobalContext);
+
+    useEffect(()=>{
+        console.log("Hello");
+        getretailers();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    },[]);
+
+    const data=login? retailerList :retailers;    
     // const listItemVariants = {
     //     hidden:{
     //         y: "-100vh",

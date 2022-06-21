@@ -23,6 +23,18 @@ export default(state,action)=>{
                 retailerList:newretailerList
             }
         }
+        case 'GET_RETAILERS':{
+
+            const present_retailer=[];
+            for( const retailer of action.payload){
+                present_retailer.push({"retailerName":retailer.retailer_name,"Phone":retailer.contact});
+            }
+            return{
+                ...state,
+                retailers:present_retailer
+            }
+            
+        }
         default:
             return state;
     }

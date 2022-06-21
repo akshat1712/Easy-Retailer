@@ -1,9 +1,9 @@
 import React,{createContext, useReducer} from "react";
 import AppReducer from "./AppReducer";
-
+import axios from "axios";
 
 const initialState={
-    login:1,
+    login:0,
     retailerList:[   {
                  Item: "Item",
                  Quantity: "Quantity"
@@ -15,7 +15,19 @@ const initialState={
              {
                  Item: "Parle-G",
                  Quantity: "23"
-             }]
+             }],
+    retailers:[
+        {
+            retailerName: "Buzz Lightyear",
+            phone: "123456789"
+        },
+        {
+            retailerName: "Buzz Lightyear",
+            phone: "123456789"
+        }
+    ],
+    popularitem:[],
+    popularretail:[],
 }
 
 export const GlobalContext =createContext(initialState);
@@ -25,6 +37,23 @@ export const GlobalProvider = ({children}) => {
 
     const [state,dispatch]= useReducer(AppReducer,initialState);
     
+    async function getretailers(){
+        try{
+            const res = await axios.get("/retailer");
+
+            console.log(res);
+            // dispatch({
+            //     type:'GET_RETAILERS',
+            //     payload:res
+            // });
+
+        }catch(err){
+            console.log("GlobalState Line-54");
+        }
+
+    }
+
+
     const changeRetailerlist= (itemUpdate) =>{
         dispatch({
             type:"UPDATE_RETAILER_LIST",
@@ -35,7 +64,11 @@ export const GlobalProvider = ({children}) => {
     return ( <GlobalContext.Provider value={{
         login:state.login,
         retailerList:state.retailerList,
-        changeRetailerlist
+        changeRetailerlist,
+        getretailers,
+        popularitem:state.popularitem,
+        popularretail:state.popularretail,
+        retailers:state.retailers
     }
     }>
         {children}
