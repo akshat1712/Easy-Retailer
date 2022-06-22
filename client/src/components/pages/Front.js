@@ -35,25 +35,24 @@ export const Front = () => {
 
   return (
     <Container fluid='true'>
-      <Row>
         <motion.div className='main-container'
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           exit="exit"
-        >
-          <Col>
+          >
+        <Row>
+          <Col xs={12} sm={12} md={6} xl={4}>
             {login ? <InventoryAdd /> : <Search />}
           </Col>
-          <Col>
+          <Col xs={12} sm={12} md={6} xl={4}>
             <List  />
           </Col>
-          <Col>
+          <Col xs={12} sm={12} md={{ span: 6, offset: 3 }} xl={{span:4, offset:0}}>
             <Popular l />
           </Col>
-        </motion.div>
       </Row>
-
+        </motion.div>
     </Container>
   )
 } 

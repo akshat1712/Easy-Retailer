@@ -30,6 +30,9 @@ export default function ArrayItem(props)
             transition:{
                 ease: "easeInOut"
             },
+        },
+        tap:{
+            rotateZ: 90
         }
     }
 
@@ -48,6 +51,7 @@ export default function ArrayItem(props)
                 onClick={handleCancel}
                 variants={arrayItemVariants}
                 whileHover="hover"
+                whileTap="tap"
             >cancel</motion.span>
         </motion.div>
     )
