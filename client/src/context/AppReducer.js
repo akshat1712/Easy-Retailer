@@ -27,7 +27,7 @@ export default(state,action)=>{
 
             const present_retailer=[];
             for( const retailer of action.payload){
-                present_retailer.push({"retailerName":retailer.retailer_name,"Phone":retailer.contact});
+                present_retailer.push({"retailerName":retailer.retailer_name,"phone":retailer.contact});
             }
             return{
                 ...state,

@@ -41,11 +41,11 @@ export const GlobalProvider = ({children}) => {
         try{
             const res = await axios.get("/retailer");
 
-            console.log(res);
-            // dispatch({
-            //     type:'GET_RETAILERS',
-            //     payload:res
-            // });
+            console.log(res.data);
+            dispatch({
+                type:'GET_RETAILERS',
+                payload:res.data
+            });
 
         }catch(err){
             console.log("GlobalState Line-54");
