@@ -26,6 +26,7 @@ app.use('/retailer', RetailerRouter);
 app.use('/customer',CustomerRouter);
 // Ended
 
+
 app.listen(5000);
 
 
