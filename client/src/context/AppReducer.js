@@ -32,6 +32,26 @@ export default(state,action)=>{
             return{
                 ...state,
                 retailers:present_retailer
+            }  
+        }
+        case 'GET_POPULAR_RETAILERS':{
+            const PopularRetailers=[];
+            for( const retailer of action.payload){
+                PopularRetailers.push({"Name":retailer.Name});
+            }
+            return{
+                ...state,
+                popularretail:PopularRetailers
+            }
+        }
+        case 'GET_POPULAR_ITEMS':{
+            const PopularItems=[];
+            for( const item of action.payload){
+                PopularItems.push({"Item":item.Item});
+            }
+            return{
+                ...state,
+                popularitem:PopularItems
             }
             
         }

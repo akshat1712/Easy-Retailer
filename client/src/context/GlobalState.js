@@ -17,14 +17,7 @@ const initialState={
                  Quantity: "23"
              }],
     retailers:[
-        {
-            retailerName: "Buzz Lightyear",
-            phone: "123456789"
-        },
-        {
-            retailerName: "Buzz Lightyear",
-            phone: "123456789"
-        }
+
     ],
     popularitem:[],
     popularretail:[],
@@ -40,17 +33,39 @@ export const GlobalProvider = ({children}) => {
     async function getretailers(){
         try{
             const res = await axios.get("/retailer");
-
-            console.log(res.data);
             dispatch({
                 type:'GET_RETAILERS',
                 payload:res.data
             });
 
         }catch(err){
-            console.log("GlobalState Line-54");
+            console.log(err);
         }
+    }
 
+    async function getPopularRetailers(){
+        try{
+            const res= await axios.get("/customer/popularretailer");
+
+            dispatch({
+                type:'GET_POPULAR_RETAILERS',
+                payload:res.data
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+    async function getPopularItems(){
+        try{
+            const res= await axios.get("/customer/popularitem");
+            dispatch({
+                type:'GET_POPULAR_ITEMS',
+                payload:res.data
+            });
+        }catch(err){
+            console.log(err);
+        }
     }
 
 
@@ -66,6 +81,8 @@ export const GlobalProvider = ({children}) => {
         retailerList:state.retailerList,
         changeRetailerlist,
         getretailers,
+        getPopularItems,
+        getPopularRetailers,
         popularitem:state.popularitem,
         popularretail:state.popularretail,
         retailers:state.retailers

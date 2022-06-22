@@ -10,12 +10,12 @@ export const List = () => {
     const { login,retailerList,retailers,getretailers } = useContext(GlobalContext);
 
     useEffect(()=>{
-        console.log("Hello");
         getretailers();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-    const data=login? retailerList :retailers;    
+    const data=login? retailerList :retailers;
+        
     // const listItemVariants = {
     //     hidden:{
     //         y: "-100vh",
