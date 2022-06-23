@@ -4,6 +4,8 @@ const {PopRetailer,PopItems} = require("../middleware/popularMiddleware");
 
 const getRetailersWith = asyncHandler(async(req, res)=>{
     const { inventory } = req.body;
+    console.log(inventory);
+
     if (!inventory){
         res.status(400).json({
             errorcode:400,

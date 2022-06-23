@@ -1,13 +1,15 @@
 import React from 'react'
+import axios from 'axios';
 import ArrayItem from './ArrayItem';
 import {motion} from 'framer-motion'
+import { size } from 'lodash';
 
 export default function Search()
 {
     const [itemArray,setItemArray] = React.useState([]);
     const [locationArray,setLocationArray] = React.useState([]);
     const [formData,setFormData] = React.useState({item: "", location: ""});
-
+    const [sellers_retailer,setSellersRetailer]= React.useState([]);
     function handleChange(event)
     {
         setFormData(prevFormData => {
@@ -16,6 +18,35 @@ export default function Search()
                 [event.target.id]: event.target.value
             }
         })
+    }
+    
+    async function handlequery(event){
+        event.preventDefault();
+        
+        const sellers=[];
+        const config= {
+            headers:{
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const query_param=[];
+        for( const item of itemArray){
+            query_param.push({name:item,quantity:1});
+        }
+
+        const res= await axios.post("/retailer/retailerswith",{inventory:query_param},config);
+
+        for( const ind in res.data)
+        {
+            for(const retailer of res.data[ind].sellers)
+                sellers.push({Name:retailer.retailer_name,Location:retailer.location});
+        }
+        setItemArray([]);
+        setLocationArray([]);
+        setFormData({item:"",location:""});
+        setSellersRetailer(sellers);
+        // console.log(sellers);
     }
     
     function addItem(e)
@@ -89,7 +120,7 @@ export default function Search()
     }
 
     return (
-        <form className='search-container'>
+        <form className='search-container' on onSubmit={handlequery}>
             <div className='item-container'>
                 <input id="item" type="text" placeholder='Item' onChange={handleChange} />
                 <motion.button type="button" className='add' onClick={addItem} variants={addVariants} whileTap="tap">+</motion.button>
@@ -105,6 +136,13 @@ export default function Search()
                             whileHover="hover"
                             whileTap="tap"
             >Search!</motion.button>
+
+            { sellers_retailer.map( (retailer)=>{
+                return(
+                    <h3>{retailer.Name}</h3>
+                )
+            })}
+
         </form>
     )
 }

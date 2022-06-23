@@ -10,7 +10,7 @@ require('dotenv').config({path: path.resolve(__dirname, '../.env')});
 
 router.get('/',getRetailers);
 router.get('/me', protect, currentRetailer);
-router.get('/retailerswith', getRetailersWith);
+router.post('/retailerswith', getRetailersWith);
 router.post('/register',registerRetailer);
 router.post('/login',loginRetailer);
 router.put('/additems', protect, updateInventory);

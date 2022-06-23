@@ -69,6 +69,7 @@ export const GlobalProvider = ({children}) => {
     }
 
 
+
     const changeRetailerlist= (itemUpdate) =>{
         dispatch({
             type:"UPDATE_RETAILER_LIST",
