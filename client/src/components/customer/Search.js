@@ -4,12 +4,11 @@ import ArrayItem from './ArrayItem';
 import {motion} from 'framer-motion'
 import { size } from 'lodash';
 
-export default function Search()
+export default function Search({sellers_retailer, setSellersRetailer})
 {
     const [itemArray,setItemArray] = React.useState([]);
     const [locationArray,setLocationArray] = React.useState([]);
     const [formData,setFormData] = React.useState({item: "", location: ""});
-    const [sellers_retailer,setSellersRetailer]= React.useState([]);
     function handleChange(event)
     {
         setFormData(prevFormData => {
@@ -136,13 +135,12 @@ export default function Search()
                             whileHover="hover"
                             whileTap="tap"
             >Search!</motion.button>
-
-            { sellers_retailer.map( (retailer)=>{
-                return(
-                    <h3>{retailer.Name}</h3>
-                )
-            })}
-
         </form>
     )
 }
+
+// { sellers_retailer.map( (retailer)=>{
+//     return(
+//         <h3>{retailer.Name}</h3>
+//     )
+// })}

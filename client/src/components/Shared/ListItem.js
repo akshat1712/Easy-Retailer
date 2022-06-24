@@ -7,6 +7,7 @@ import { GlobalContext } from '../../context/GlobalState';
 
 export default function ListItem(props) {
   const { login } = useContext(GlobalContext);
+  console.log(props);
   const listItemVariants = {
     // hidden:{
     //     y: -1000,
@@ -38,12 +39,12 @@ export default function ListItem(props) {
           {!login ? (
             <>
               <span className="material-symbols-outlined">person</span>
-              <span className="retailer-name">{props.retailerName}</span>
+              <span className="retailer-name">{props.Name}</span>
             </>
           ) : (
             <>
               <span className="material-symbols-outlined">store</span>
-              <span className="inventory-item">{props.Item}</span>
+              <span className="inventory-item">{props.inventory.name}</span>
 
             </>
           )}
@@ -55,10 +56,10 @@ export default function ListItem(props) {
           {!login ? (
             <>
               <span className="material-symbols-outlined">Call</span>
-              <span className="retailer-phone">{props.phone}</span>
+              <span className="retailer-phone">{props.Location}</span>
             </>
           ) : (
-              <span className="inventory-quantity">{props.Quantity}</span>
+              <span className="inventory-quantity">{props.inventory.quantity}</span>
           )}
 
         </div>

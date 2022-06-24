@@ -33,6 +33,8 @@ export const Front = () => {
     }
   }
 
+  const [reqRetailers, setReqRetailers] = React.useState([]);
+
   return (
     <Container fluid='true'>
         <motion.div className='main-container'
@@ -43,10 +45,10 @@ export const Front = () => {
           >
         <Row>
           <Col xs={12} sm={12} md={6} xl={4}>
-            {login ? <InventoryAdd /> : <Search />}
+            {login ? <InventoryAdd /> : <Search sellers_retailer={reqRetailers} setSellersRetailer={setReqRetailers}/>}
           </Col>
           <Col xs={12} sm={12} md={6} xl={4}>
-            <List  />
+            <List  reqRetailers={reqRetailers}/>
           </Col>
           <Col xs={12} sm={12} md={{ span: 6, offset: 3 }} xl={{span:4, offset:0}}>
             <Popular l />

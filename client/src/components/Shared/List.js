@@ -5,7 +5,7 @@ import { GlobalContext } from '../../context/GlobalState';
 import {motion} from 'framer-motion';
 
 
-export const List = () => {
+export const List = ({reqRetailers}) => {
     
     const { login,retailerList,retailers,getretailers } = useContext(GlobalContext);
 
@@ -14,7 +14,10 @@ export const List = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
-    const data=login? retailerList :retailers;
+    const customerList = reqRetailers ? reqRetailers : retailers;
+    // const retailerList = 
+
+    const data=login? retailerList : customerList;
         
     // const listItemVariants = {
     //     hidden:{
