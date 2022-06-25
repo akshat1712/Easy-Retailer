@@ -4,7 +4,8 @@ import ArrayItem from './ArrayItem';
 import {motion} from 'framer-motion'
 import { size } from 'lodash';
 
-export default function Search({sellers_retailer, setSellersRetailer})
+
+export default function Search({sellers_retailer, setSellersRetailer, darkMode})
 {
     const [itemArray,setItemArray] = React.useState([]);
     const [locationArray,setLocationArray] = React.useState([]);
@@ -39,7 +40,7 @@ export default function Search({sellers_retailer, setSellersRetailer})
         for( const ind in res.data)
         {
             for(const retailer of res.data[ind].sellers)
-                sellers.push({Name:retailer.retailer_name,Location:retailer.location});
+                sellers.push({Name:retailer.retailer_name,Contact:retailer.contact});
         }
         setItemArray([]);
         setLocationArray([]);
@@ -84,12 +85,14 @@ export default function Search({sellers_retailer, setSellersRetailer})
         return <ArrayItem 
                     thing={item}
                     setThingArray={setItemArray}
+                    darkMode={darkMode}
                 />
     })
     const locationArrayEls = locationArray.map(location => {
         return <ArrayItem 
                     thing={location}
                     setThingArray={setLocationArray}
+                    darkMode={darkMode}
                 />
     })
 
@@ -119,21 +122,50 @@ export default function Search({sellers_retailer, setSellersRetailer})
     }
 
     return (
-        <form className='search-container' on onSubmit={handlequery}>
+        <form 
+            className={darkMode ? 'dark-search-container':'search-container'} 
+            on 
+            onSubmit={handlequery}
+        >
             <div className='item-container'>
-                <input id="item" type="text" placeholder='Item' onChange={handleChange} />
-                <motion.button type="button" className='add' onClick={addItem} variants={addVariants} whileTap="tap">+</motion.button>
+                <input 
+                    id='item'
+                    className={darkMode ? 'dark-item':'item'} 
+                    type="text" 
+                    placeholder='Item' 
+                    onChange={handleChange} 
+                />
+                <motion.button 
+                    type="button" 
+                    className={darkMode ? 'dark-add':'add'} 
+                    onClick={addItem} 
+                    variants={addVariants} 
+                    whileTap="tap"
+                >+</motion.button>
                 <div className='array-item'>{itemArrayEls}</div>
             </div>
             <div className='location-container'>
-                <input id="location" type="text" placeholder='Location' onChange={handleChange} />
-                <motion.button type="button" className='add' onClick={addLoc} variants={addVariants} whileTap="tap">+</motion.button>
+                <input 
+                    id='location'
+                    className={darkMode ? 'dark-location':'location'} 
+                    type="text" 
+                    placeholder='Location' 
+                    onChange={handleChange} 
+                />
+                <motion.button 
+                    type="button" 
+                    className={darkMode ? 'dark-add':'add'}
+                    onClick={addLoc} 
+                    variants={addVariants} 
+                    whileTap="tap"
+                >+</motion.button>
                 <div className='array-item'>{locationArrayEls}</div>
             </div>
-            <motion.button className='search'
-                            variants={searchVariants}
-                            whileHover="hover"
-                            whileTap="tap"
+            <motion.button 
+                className={darkMode ? 'dark-search':'search'}
+                variants={searchVariants}
+                whileHover="hover"
+                whileTap="tap"
             >Search!</motion.button>
         </form>
     )

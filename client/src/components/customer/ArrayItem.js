@@ -3,7 +3,7 @@ import {motion} from 'framer-motion'
 
 export default function ArrayItem(props)
 {
-    const {thing,setThingArray} = props;
+    const {thing,setThingArray,darkMode} = props;
 
     function handleCancel()
     {
@@ -44,6 +44,7 @@ export default function ArrayItem(props)
             animate="visible"
         >
             <motion.div
+                className={darkMode && 'dark'}
                 variants={arrayItemVariants}
                 whileHover="hover"
             >{thing}</motion.div>

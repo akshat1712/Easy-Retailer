@@ -4,7 +4,7 @@ import Row from 'react-bootstrap/Row';
 
 import { GlobalContext } from '../../context/GlobalState';
 
-export default function Popular( )
+export default function Popular({darkMode})
 {
     const { login,popularitem,popularretail,getPopularRetailers,getPopularItems } = useContext(GlobalContext);
 
@@ -18,12 +18,12 @@ export default function Popular( )
         <Container fluid>
             <div className='pop-container'>
                 <Row>
-                    <div className="popular">
-                        <h3 id='pop-items'>Popular Items</h3>
+                    <div className={darkMode ? 'popular dark-pop-items' : 'popular pop-items'}>
+                        <h3>Popular Items</h3>
                         {
                             popularitem.map((item)=>{
                                 return(
-                                    <h4>{item.Item}</h4>
+                                    <h4 className='popular-content'>{item.Item}</h4>
                                 )
                             })
                         }
@@ -32,12 +32,12 @@ export default function Popular( )
                 </Row>
                 <Row>
                     {!login? 
-                    <div className="popular">
-                        <h3 id='pop-retailers'>Popular Retailers</h3>
+                    <div className={darkMode ? 'popular dark-pop-retailers' : 'popular pop-retailers'}>
+                        <h3>Popular Retailers</h3>
                         {
                             popularretail.map((retailer)=>{
                                 return(
-                                    <h4>{retailer.Name}</h4>
+                                    <h4 className='popular-content'>{retailer.Name}</h4>
                                 )
                             })
                         }

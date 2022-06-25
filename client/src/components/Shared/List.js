@@ -2,10 +2,10 @@ import React,{useContext, useEffect} from 'react'
 import ListItem from './ListItem'
 import Container from 'react-bootstrap/Container';
 import { GlobalContext } from '../../context/GlobalState';
-import {motion} from 'framer-motion';
+import {motion, AnimatePresence} from 'framer-motion';
 
 
-export const List = ({reqRetailers}) => {
+export const List = ({reqRetailers, darkMode}) => {
     
     const { login,retailerList,retailers,getretailers } = useContext(GlobalContext);
 
@@ -15,37 +15,20 @@ export const List = ({reqRetailers}) => {
     },[]);
 
     const customerList = reqRetailers ? reqRetailers : retailers;
-    // const retailerList = 
-
     const data=login? retailerList : customerList;
-        
-    // const listItemVariants = {
-    //     hidden:{
-    //         y: "-100vh",
-    //         opacity: 0
-    //     },
-    //     visible:{
-    //         y:0,
-    //         opacity:1
-    //     },
-    //     hover:{
-    //         scale: 1.1,
-    //         transition:{
-    //             ease: "easeInOut"
-    //         },
-    //         boxShadow: "rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px"
-    //     }
-    // }
     
     const Array = data.map(Item=> {
-        return <ListItem
+        return (
+                <ListItem
                 {...Item}
+                darkMode={darkMode}
                 />
+                )
     });
     
     return (
         <Container>
-            <div className='list-container'>
+            <div className={darkMode ? 'dark-list-container': 'list-container'}>
                 {Array}
             </div>
         </Container>

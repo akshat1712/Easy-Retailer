@@ -14,7 +14,7 @@ import Col from 'react-bootstrap/Col'
 import {motion} from 'framer-motion'
 
 
-export const Front = () => {
+export const Front = ({darkMode}) => {
   const { login } = useContext(GlobalContext);
   const containerVariants = {
     hidden:{
@@ -37,7 +37,7 @@ export const Front = () => {
 
   return (
     <Container fluid='true'>
-        <motion.div className='main-container'
+        <motion.div className={darkMode ? 'dark-main-container' : 'main-container'}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -45,13 +45,13 @@ export const Front = () => {
           >
         <Row>
           <Col xs={12} sm={12} md={6} xl={4}>
-            {login ? <InventoryAdd /> : <Search sellers_retailer={reqRetailers} setSellersRetailer={setReqRetailers}/>}
+            {login ? <InventoryAdd darkMode={darkMode} /> : <Search sellers_retailer={reqRetailers} setSellersRetailer={setReqRetailers} darkMode={darkMode}/>}
           </Col>
           <Col xs={12} sm={12} md={6} xl={4}>
-            <List  reqRetailers={reqRetailers}/>
+            <List  reqRetailers={reqRetailers} darkMode={darkMode}/>
           </Col>
           <Col xs={12} sm={12} md={{ span: 6, offset: 3 }} xl={{span:4, offset:0}}>
-            <Popular l />
+            <Popular l darkMode={darkMode} />
           </Col>
       </Row>
         </motion.div>

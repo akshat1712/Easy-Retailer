@@ -10,7 +10,7 @@ import {motion} from 'framer-motion'
 
 // import logo from './EasyRetailerLogo_1.svg';
 import logo from './logos/Logo.svg';
-export const Header = () => {
+export const Header = ({darkMode, setDarkMode}) => {
 
   const { login } = useContext(GlobalContext);
   const logoVariants = {
@@ -20,20 +20,28 @@ export const Header = () => {
     }
   }
 
+  function toggleDarkMode()
+  {
+    setDarkMode(prev => !prev);
+  }
+
   return (
     <>
       <Navbar bg="info" variant="light" sticky="top" expand="lg">
         <Container>
-          <Navbar.Brand as={Link} to="/"> 
-            <motion.img
-              variants={logoVariants}
-              whileHover="hover"
-              src={logo}
-              width="12.5%"
-              height="12.5%"
-              className="d-inline-block align-top"
-              alt="logo"/>
-          </Navbar.Brand>
+          <div className='logo-toggle-container'>
+            <span className="material-symbols-outlined dark-mode-toggle" onClick={toggleDarkMode}>brightness_4</span>
+            <Navbar.Brand as={Link} to="/"> 
+              <motion.img
+                variants={logoVariants}
+                whileHover="hover"
+                src={logo}
+                width="12.5%"
+                height="12.5%"
+                className="d-inline-block align-top"
+                alt="logo"/>
+            </Navbar.Brand>
+          </div>
 
           <Navbar.Toggle />
 
