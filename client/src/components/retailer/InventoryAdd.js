@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 import { GlobalContext } from '../../context/GlobalState';
 
-export const InventoryAdd = () => {
+export const InventoryAdd = ({darkMode}) => {
 
   const { changeRetailerlist } = useContext(GlobalContext);
 
@@ -28,11 +28,12 @@ export const InventoryAdd = () => {
   };
 
   return (
-    <div className="search-container">
+    <div className={darkMode ? "dark-search-container": "search-container"}>
       <Form>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Item</Form.Label>
+          <Form.Label style={darkMode ? {color: "white"} : {}}>Item</Form.Label>
           <Form.Control
+            className={darkMode ? "dark-item":"item"}
             type="text"
             placeholder="Item"
             value={item}
@@ -41,8 +42,9 @@ export const InventoryAdd = () => {
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Quantity</Form.Label>
+          <Form.Label style={darkMode ? {color: "white"} : {}}>Quantity</Form.Label>
           <Form.Control
+            className={darkMode ? "dark-quantity":"quantity"}
             type="number"
             placeholder="Quantity"
             value={quantity}

@@ -25,12 +25,23 @@ export const Header = ({darkMode, setDarkMode}) => {
     setDarkMode(prev => !prev);
   }
 
+  const toggleDarkVariants = {
+    tap:{
+      rotateZ: 360,
+    }
+  }
+
   return (
     <>
       <Navbar bg="info" variant="light" sticky="top" expand="lg">
         <Container>
           <div className='logo-toggle-container'>
-            <span className="material-symbols-outlined dark-mode-toggle" onClick={toggleDarkMode}>brightness_4</span>
+            <motion.span 
+              variants={toggleDarkVariants}
+              whileTap='tap'
+              className="material-symbols-outlined dark-mode-toggle" 
+              onClick={toggleDarkMode}
+            >brightness_4</motion.span>
             <Navbar.Brand as={Link} to="/"> 
               <motion.img
                 variants={logoVariants}
