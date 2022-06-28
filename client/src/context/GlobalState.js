@@ -3,7 +3,7 @@ import AppReducer from "./AppReducer";
 import axios from "axios";
 
 const initialState={
-    login:1,
+    login:0,
     retailerList:[   {
                  Item: "Item",
                  Quantity: "Quantity"

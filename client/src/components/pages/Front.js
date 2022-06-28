@@ -5,6 +5,7 @@ import Search from '../customer/Search'
 import { useContext } from 'react';
 import { InventoryAdd } from '../retailer/InventoryAdd'
 import { GlobalContext } from '../../context/GlobalState';
+import { userContext } from '../../context/userContext';
 
 import {List} from '../Shared/List'
 
@@ -15,7 +16,7 @@ import {motion} from 'framer-motion'
 
 
 export const Front = ({darkMode}) => {
-  const { login } = useContext(GlobalContext);
+  const { user } = useContext(userContext);
   const containerVariants = {
     hidden:{
       opacity: 0
@@ -36,7 +37,7 @@ export const Front = ({darkMode}) => {
   const [reqRetailers, setReqRetailers] = React.useState([]);
 
   return (
-    <Container fluid='true'>
+    <Container fluid={true}>
         <motion.div className={darkMode ? 'dark-main-container' : 'main-container'}
           variants={containerVariants}
           initial="hidden"
@@ -45,7 +46,7 @@ export const Front = ({darkMode}) => {
           >
         <Row>
           <Col xs={12} sm={12} md={6} xl={4}>
-            {login ? <InventoryAdd darkMode={darkMode} /> : <Search sellers_retailer={reqRetailers} setSellersRetailer={setReqRetailers} darkMode={darkMode}/>}
+            {user.user ? (<InventoryAdd darkMode={darkMode} />) : (<Search sellers_retailer={reqRetailers} setSellersRetailer={setReqRetailers} darkMode={darkMode}/>)}
           </Col>
           <Col xs={12} sm={12} md={6} xl={4}>
             <List  reqRetailers={reqRetailers} darkMode={darkMode}/>

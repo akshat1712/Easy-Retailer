@@ -3,10 +3,11 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import {AnimatePresence, motion} from 'framer-motion'
 
-import { GlobalContext } from '../../context/GlobalState';
+import { userContext } from "../../context/userContext";
 
 export default function ListItem(props) {
-  const { login } = useContext(GlobalContext);
+  const {user} = useContext(userContext);
+  
   console.log(props);
   const listItemVariants = {
     hidden:{
@@ -42,7 +43,7 @@ export default function ListItem(props) {
         >
           <div className="name-container">
 
-            {!login ? (
+            {!user.user ? (
               <>
                 <span className="material-symbols-outlined">person</span>
                 <span className="retailer-name">{props.Name}</span>
@@ -59,7 +60,7 @@ export default function ListItem(props) {
 
           <div className="extra-info-container">
 
-            {!login ? (
+            {!user.user ? (
               <>
                 <span className="material-symbols-outlined">Call</span>
                 <span className="retailer-phone">{props.Contact}</span>

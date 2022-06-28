@@ -2,7 +2,6 @@ import React from 'react'
 import axios from 'axios';
 import ArrayItem from './ArrayItem';
 import {motion} from 'framer-motion'
-import { size } from 'lodash';
 
 
 export default function Search({sellers_retailer, setSellersRetailer, darkMode})
@@ -124,7 +123,6 @@ export default function Search({sellers_retailer, setSellersRetailer, darkMode})
     return (
         <form 
             className={darkMode ? 'dark-search-container':'search-container'} 
-            on 
             onSubmit={handlequery}
         >
             <div className='item-container'>

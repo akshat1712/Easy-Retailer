@@ -2,12 +2,14 @@ import React,{useContext, useEffect} from 'react'
 import ListItem from './ListItem'
 import Container from 'react-bootstrap/Container';
 import { GlobalContext } from '../../context/GlobalState';
+import { userContext } from '../../context/userContext';
 import {motion, AnimatePresence} from 'framer-motion';
 
 
 export const List = ({reqRetailers, darkMode}) => {
     
-    const { login,retailerList,retailers,getretailers } = useContext(GlobalContext);
+    const {retailerList,retailers,getretailers } = useContext(GlobalContext);
+    const {user} = useContext(userContext);
 
     useEffect(()=>{
         getretailers();
@@ -15,7 +17,7 @@ export const List = ({reqRetailers, darkMode}) => {
     },[]);
 
     const customerList = reqRetailers ? reqRetailers : retailers;
-    const data=login? retailerList : customerList;
+    const data=user.user? retailerList : customerList;
     
     const Array = data.map(Item=> {
         return (
