@@ -1,113 +1,115 @@
-import React,{createContext, useReducer,useContext} from "react";
+import React, { createContext, useReducer, useContext } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
 
 import { userContext } from "./userContext";
 
-const initialState={
-    login:0,
-    retailerList:[ 
-        
-    ],
-    retailers:[
+const initialState = {
+  login: 0,
+  retailerList: [],
+  retailers: [],
+  popularitem: [],
+  popularretail: [],
+};
 
-    ],
-    popularitem:[],
-    popularretail:[],
-}
+export const GlobalContext = createContext(initialState);
 
-export const GlobalContext =createContext(initialState);
+export const GlobalProvider = ({ children }) => {
+  const [state, dispatch] = useReducer(AppReducer, initialState);
 
-export const GlobalProvider = ({children}) => {
-    
+  const { user } = useContext(userContext);
 
-    const [state,dispatch]= useReducer(AppReducer,initialState);
-
-    const {user} = useContext(userContext);
-
-    async function getretailers(){
-        try{
-            const res = await axios.get("/retailer");
-            dispatch({
-                type:'GET_RETAILERS',
-                payload:res.data
-            });
-
-        }catch(err){
-            console.log(err);
-        }
+  async function getretailers() {
+    try {
+      const res = await axios.get("/retailer");
+      dispatch({
+        type: "GET_RETAILERS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    async function getPopularRetailers(){
-        try{
-            const res= await axios.get("/customer/popularretailer");
+  async function getPopularRetailers() {
+    try {
+      const res = await axios.get("/customer/popularretailer");
 
-            dispatch({
-                type:'GET_POPULAR_RETAILERS',
-                payload:res.data
-            });
-        }catch(err){
-            console.log(err);
-        }
+      dispatch({
+        type: "GET_POPULAR_RETAILERS",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    async function getPopularItems(){
-        try{
-            const res= await axios.get("/customer/popularitem");
-            dispatch({
-                type:'GET_POPULAR_ITEMS',
-                payload:res.data
-            });
-            // console.log(initialState);
-        }catch(err){
-            console.log(err);
-        }
+  async function getPopularItems() {
+    try {
+      const res = await axios.get("/customer/popularitem");
+      dispatch({
+        type: "GET_POPULAR_ITEMS",
+        payload: res.data,
+      });
+      // console.log(initialState);
+    } catch (err) {
+      console.log(err);
     }
+  }
 
+  async function changeRetailerlist(itemUpdate) {
+    try {
 
+      console.log(itemUpdate);
+      
+      dispatch({
+        type: "UPDATE_RETAILER_LIST",
+        payload: itemUpdate,
+      });
+      
+      const res = await axios.put("/retailer/additems", {"inventory":[itemUpdate]}, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
 
-    async function changeRetailerlist(itemUpdate){
-        try{
-            console.log(itemUpdate);
-            dispatch({
-                type:"UPDATE_RETAILER_LIST",
-                payload:itemUpdate
-            })
-        }catch(err){
-            console.log(err);
-        }
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-
-    async function getRetailerlist(){
-        try{
-            const res= await axios.get("/retailer/me",{
-                headers:{
-                    Authorization: `Bearer ${user.token}`
-                }
-            });
-            dispatch({
-                type:"GET_RETAILER_LIST",
-                payload:res.data
-            });
-        }catch(err){
-            console.log(err);
-        }
+  async function getRetailerlist() {
+    try {
+      const res = await axios.get("/retailer/me", {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      dispatch({
+        type: "GET_RETAILER_LIST",
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
     }
+  }
 
-    return ( <GlobalContext.Provider value={{
-        login:state.login,
-        retailerList:state.retailerList,
+  return (
+    <GlobalContext.Provider
+      value={{
+        login: state.login,
+        retailerList: state.retailerList,
         changeRetailerlist,
         getretailers,
         getPopularItems,
         getPopularRetailers,
-        popularitem:state.popularitem,
-        popularretail:state.popularretail,
-        retailers:state.retailers,
-        getRetailerlist
-    }
-    }>
-        {children}
-    </GlobalContext.Provider>);
-}
+        popularitem: state.popularitem,
+        popularretail: state.popularretail,
+        retailers: state.retailers,
+        getRetailerlist,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
+  );
+};
