@@ -20,9 +20,10 @@ export const InventoryAdd = ({darkMode}) => {
   };
 
   const handleUpdate = (e) => {
+    e.preventDefault();
     if( item==='' || quantity===0)
       return;
-    changeRetailerlist({"Item":item,"Quantity":quantity});
+    changeRetailerlist({"name":item,"quantity":quantity});
     SetItem("");
     SetQuantity(0);
   };

@@ -1,21 +1,14 @@
-import React,{createContext, useReducer} from "react";
+import React,{createContext, useReducer,useContext} from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
 
+import { userContext } from "./userContext";
+
 const initialState={
     login:0,
-    retailerList:[   {
-                 Item: "Item",
-                 Quantity: "Quantity"
-             },
-             {
-                 Item: "Lays",
-                 Quantity: "45"
-             },
-             {
-                 Item: "Parle-G",
-                 Quantity: "23"
-             }],
+    retailerList:[ 
+        
+    ],
     retailers:[
 
     ],
@@ -29,7 +22,9 @@ export const GlobalProvider = ({children}) => {
     
 
     const [state,dispatch]= useReducer(AppReducer,initialState);
-    
+
+    const {user} = useContext(userContext);
+
     async function getretailers(){
         try{
             const res = await axios.get("/retailer");
@@ -63,6 +58,7 @@ export const GlobalProvider = ({children}) => {
                 type:'GET_POPULAR_ITEMS',
                 payload:res.data
             });
+            // console.log(initialState);
         }catch(err){
             console.log(err);
         }
@@ -70,11 +66,33 @@ export const GlobalProvider = ({children}) => {
 
 
 
-    const changeRetailerlist= (itemUpdate) =>{
-        dispatch({
-            type:"UPDATE_RETAILER_LIST",
-            payload:itemUpdate
-        })
+    async function changeRetailerlist(itemUpdate){
+        try{
+            console.log(itemUpdate);
+            dispatch({
+                type:"UPDATE_RETAILER_LIST",
+                payload:itemUpdate
+            })
+        }catch(err){
+            console.log(err);
+        }
+    }
+
+
+    async function getRetailerlist(){
+        try{
+            const res= await axios.get("/retailer/me",{
+                headers:{
+                    Authorization: `Bearer ${user.token}`
+                }
+            });
+            dispatch({
+                type:"GET_RETAILER_LIST",
+                payload:res.data
+            });
+        }catch(err){
+            console.log(err);
+        }
     }
 
     return ( <GlobalContext.Provider value={{
@@ -86,7 +104,8 @@ export const GlobalProvider = ({children}) => {
         getPopularRetailers,
         popularitem:state.popularitem,
         popularretail:state.popularretail,
-        retailers:state.retailers
+        retailers:state.retailers,
+        getRetailerlist
     }
     }>
         {children}

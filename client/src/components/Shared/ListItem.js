@@ -8,7 +8,7 @@ import { userContext } from "../../context/userContext";
 export default function ListItem(props) {
   const {user} = useContext(userContext);
   
-  console.log(props);
+  // console.log(props);
   const listItemVariants = {
     hidden:{
         y: "-100vh",
@@ -51,7 +51,7 @@ export default function ListItem(props) {
             ) : (
               <>
                 <span className="material-symbols-outlined">store</span>
-                <span className="inventory-item">{props.Item}</span>
+                <span className="inventory-item">{props.name}</span>
 
               </>
             )}
@@ -66,7 +66,7 @@ export default function ListItem(props) {
                 <span className="retailer-phone">{props.Contact}</span>
               </>
             ) : (
-                <span className="inventory-quantity">{props.Quantity}</span>
+                <span className="inventory-quantity">{props.quantity}</span>
             )}
 
           </div>

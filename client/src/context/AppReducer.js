@@ -5,17 +5,17 @@ export default(state,action)=>{
             let togg=0;
             state.retailerList.map( (element)=>{
 
-                if( element.Item===action.payload.Item){
-                    const newquantity=parseInt(element.Quantity)+parseInt(action.payload.Quantity);
+                if( element.name===action.payload.name){
+                    const newquantity=parseInt(element.quantity)+parseInt(action.payload.quantity);
                     if(newquantity>0)
-                        newretailerList.push( {"Item":element.Item,"Quantity":newquantity});
+                        newretailerList.push( {"name":element.name,"quantity":newquantity});
                     togg=1;
                 }
                 else{
                     newretailerList.push(element);
                 }
             });
-            if(!togg && parseInt(action.payload.Quantity)>0)
+            if(!togg && parseInt(action.payload.quantity)>0)
                 newretailerList.push(action.payload);
 
             return{
@@ -54,6 +54,12 @@ export default(state,action)=>{
                 popularitem:PopularItems
             }
             
+        }
+        case 'GET_RETAILER_LIST':{
+            return{
+                ...state,
+                retailerList:action.payload.inventory
+            }
         }
         default:
             return state;

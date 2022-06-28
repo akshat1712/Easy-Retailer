@@ -31,10 +31,10 @@ const Login = () => {
         // Submit functions
         dispatch({ type: 'LOGIN/PENDING' });
 
-        if (formData.contact.length !== 10){
-            dispatch({type: 'LOGIN/ERROR', payload: "Phone number should be 10 digits"});
-        }
-        else{
+        // if (formData.contact.length !== 10){
+        //     dispatch({type: 'LOGIN/ERROR', payload: "Phone number should be 10 digits"});
+        // }
+        // else{
             try {
                 const response = await authHelper.login(formData);
                 dispatch({ type: 'LOGIN/SUCCESS', payload: response});
@@ -42,7 +42,7 @@ const Login = () => {
                 const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
                 dispatch({ type: 'LOGIN/ERROR', payload: message });
             }
-        }
+        // }
     }
 
     const containerVariants = {

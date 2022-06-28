@@ -116,7 +116,8 @@ const currentRetailer = (req, res) => {
         contact: req.retailer.contact,
         retailer_name: req.retailer.retailer_name,
         location: req.retailer.location,
-        token: generateToken(req.retailer._id)
+        token: generateToken(req.retailer._id),
+        inventory:req.retailer.inventory
     })
 }
 

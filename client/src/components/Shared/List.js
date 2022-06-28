@@ -8,11 +8,12 @@ import {motion, AnimatePresence} from 'framer-motion';
 
 export const List = ({reqRetailers, darkMode}) => {
     
-    const {retailerList,retailers,getretailers } = useContext(GlobalContext);
+    const {retailerList,retailers,getretailers,getRetailerlist } = useContext(GlobalContext);
     const {user} = useContext(userContext);
 
     useEffect(()=>{
         getretailers();
+        getRetailerlist();
         // eslint-disable-next-line react-hooks/exhaustive-deps
     },[]);
 
