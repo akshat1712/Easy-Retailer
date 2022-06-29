@@ -174,6 +174,32 @@ body{
     height: 35px;
 }
 
+.smart-search{
+    list-style: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.smart-search > li:hover{
+    text-align: left;
+    background-color: #dedede;
+}
+
+.dark-smart-search{
+    list-style: none;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: #303030;
+    color: white;
+}
+
+.dark-smart-search > li:hover{
+    text-align: left;
+    background-color: #424242;
+}
+
 .search{
     background-color: #00C853;
     /* font-weight: bold; */
