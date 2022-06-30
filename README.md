@@ -1,8 +1,8 @@
 Project to make Retailed Business working easier
 
 # Features
-* Reatailers can Register and Login to manage their inventories and see popular iems for insight.
-* Customers can search for comodities to get names and contacts of retailers with available items.
+* Reatailers can register and login to manage their inventories and see popular items for insight.
+* Customers can search for commodities to get names and contacts of retailers with available items.
 
 ## Search for retailers
 ![Retailer Search ](https://user-images.githubusercontent.com/76874424/176653859-e33adb72-7822-4363-ac1f-9a9e0443ea4a.png)
