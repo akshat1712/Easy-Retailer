@@ -15,7 +15,7 @@ export const List = ({reqRetailers, darkMode}) => {
         getretailers();
         getRetailerlist();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[]);
+    },[user.user]);
 
     const customerList = reqRetailers ? reqRetailers : retailers;
     const data=user.user? retailerList : customerList;
