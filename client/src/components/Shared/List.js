@@ -1,4 +1,4 @@
-import React,{useContext, useEffect} from 'react'
+import React,{useState,useContext, useEffect} from 'react'
 import ListItem from './ListItem'
 import Container from 'react-bootstrap/Container';
 import { GlobalContext } from '../../context/GlobalState';
@@ -11,11 +11,15 @@ export const List = ({reqRetailers, darkMode}) => {
     const {retailerList,retailers,getretailers,getRetailerlist } = useContext(GlobalContext);
     const {user} = useContext(userContext);
 
-    useEffect(()=>{
-        getretailers();
-        getRetailerlist();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[user.user]);
+    const [localretailerlist,setlocalretailerlist]=useState(retailerList);
+    
+    // useEffect(()=>{
+    //     setlocalretailerlist(retailerList);
+    //     console.log(localretailerlist);
+    //     // eslint-disable-next-line react-hooks/exhaustive-deps
+    // },[user]);
+    
+    
 
     const customerList = reqRetailers ? reqRetailers : retailers;
     const data=user.user? retailerList : customerList;

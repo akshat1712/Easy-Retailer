@@ -1,4 +1,4 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useReducer,useEffect } from 'react';
 
 import { userReducer } from './userReducer';
 
@@ -18,6 +18,11 @@ export const userContext = createContext(initialState);
 export const UserContextProvider = ({ children }) => {
 
     const [user, dispatch] = useReducer(userReducer, initialState);
+
+    useEffect(()=>{
+        console.log("TODAY");
+    },[user]);
+
 
     return (
         <userContext.Provider value={{ user, dispatch }}>

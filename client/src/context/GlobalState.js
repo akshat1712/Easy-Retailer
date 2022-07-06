@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useContext } from "react";
+import React, { createContext, useReducer, useContext, useEffect } from "react";
 import AppReducer from "./AppReducer";
 import axios from "axios";
 
@@ -19,8 +19,17 @@ export const GlobalProvider = ({ children }) => {
 
   const { user } = useContext(userContext);
 
+
+  useEffect(()=>{
+    getretailers();
+    getRetailerlist();
+    console.log("HELLO");
+
+  },[user]);
+
   async function getretailers() {
     try {
+      console.log("NOW");
       const res = await axios.get("/retailer");
       dispatch({
         type: "GET_RETAILERS",
@@ -69,7 +78,7 @@ export const GlobalProvider = ({ children }) => {
       
       const res = await axios.put("/retailer/additems", {"inventory":[itemUpdate]}, {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.user.token}`,
         },
       });
 
@@ -82,7 +91,7 @@ export const GlobalProvider = ({ children }) => {
     try {
       const res = await axios.get("/retailer/me", {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.user.token}`,
         },
       });
       dispatch({

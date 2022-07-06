@@ -1,21 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import { BrowserRouter as Router } from 'react-router-dom';
-import { UserContextProvider } from './context/userContext';
-import { GlobalProvider } from './context/GlobalState';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import { BrowserRouter as Router } from "react-router-dom";
+import { UserContextProvider } from "./context/userContext";
+import { GlobalProvider } from "./context/GlobalState";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <GlobalProvider>
-      <UserContextProvider>
+    <UserContextProvider>
+      <GlobalProvider>
         <Router>
           <App />
         </Router>
-      </UserContextProvider>
-    </GlobalProvider>
+      </GlobalProvider>
+    </UserContextProvider>
   </React.StrictMode>
 );
-
